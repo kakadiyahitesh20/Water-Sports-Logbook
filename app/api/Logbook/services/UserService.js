@@ -20,8 +20,8 @@ module.exports = function (server, options, components) {
 
 	function createNewUser(usersInfo) {
 		console.log("createNewUser");
-		console.log(userInfo);
-		return User.create(userInfo);
+		console.log(usersInfo);
+		return User.create(usersInfo);
 	}
 
 

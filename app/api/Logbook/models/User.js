@@ -5,25 +5,12 @@
 
 const mongoose = require('mongoose');
 module.exports = new mongoose.Schema({
-	name: String,
-	address: {
-		street: {
-	        type: String
-	    },
-	    city: {
-	        type: String
-	    },
-	    state: {
-	        type: String
-	    },
-	    zip: {
-	        type: String
-	    },
-	    type: {
-	        type: String
-	    }
-	},
-	phone: String
+    Name: String,
+    Email: String,
+    dob: {
+        type: Date
+    },
+	password: String
 }, {
 	// add "created at" & "updated at" time stamps.
 	timestamps: true
