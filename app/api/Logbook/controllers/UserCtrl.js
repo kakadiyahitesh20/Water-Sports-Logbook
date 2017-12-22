@@ -20,6 +20,17 @@ module.exports = function (server, options, services) {
                 .then(reply)
                 .catch(errorHandling(reply));
         },
+
+        getUsersList: function (request, reply) {
+            console.log("UserCtrl --> getUsersList");
+            // Call the package service to get a specific package
+            UserService.getUserList()
+                .then(userLists => {
+                reply(userLists);
+        })
+        },
+
+
     };
 
 };

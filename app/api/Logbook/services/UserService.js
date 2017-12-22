@@ -24,10 +24,24 @@ module.exports = function (server, options, components) {
 		return User.create(usersInfo);
 	}
 
+    /*  ---------------------------------------------------------------
+            Get User List
+            Params: None
+            Return: User list in JSON
+            Effects: None;
+        ---------------------------------------------------------------*/
+
+    function getUserList() {
+        console.log("Start getUserList ---->");
+        return User.find();
+    }
 
 
-	return {
-        createNewUser
+
+
+    return {
+        createNewUser,
+		getUserList
 	};
 
 };

@@ -6,6 +6,7 @@ module.exports = function (server, options, controllers, components) {
 
 	const {UserCtrl} = controllers;
 	const {CreateUser} = components.schema;
+	const {GetUserList} = components.schema
 
 
     var corsHeaders = {
@@ -25,5 +26,16 @@ module.exports = function (server, options, controllers, components) {
 				validate: CreateUser
 			}
     	},
+        {
+            method: "GET",
+            path: "/getUsersList",
+            config:
+                {
+                    handler: UserCtrl.getUsersList,
+                    description: "Get users list from DB",
+                    tags: ["api"],
+                    validate: GetUserList
+                }
+        },
 	];
 };
