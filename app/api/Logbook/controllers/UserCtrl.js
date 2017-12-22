@@ -23,13 +23,22 @@ module.exports = function (server, options, services) {
 
         getUsersList: function (request, reply) {
             console.log("UserCtrl --> getUsersList");
-            // Call the package service to get a specific package
+            // Call the user service to get a specific userlist
             UserService.getUserList()
                 .then(userLists => {
                 reply(userLists);
         })
         },
 
+        usersLoginCheck: function (request, reply) {
+            console.log("UserCtrl --> checkUserLogin");
+            console.log(request)
+            // Call the user service to check login
+            UserService.checkUserLogin(request.params.email,request.params.password)
+                .then(checkLogin => {
+                reply(checkLogin);
+        })
+        },
 
     };
 

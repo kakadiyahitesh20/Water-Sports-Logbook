@@ -36,12 +36,25 @@ module.exports = function (server, options, components) {
         return User.find();
     }
 
+    /*  ---------------------------------------------------------------
+           Check User credentials
+           Params: Passed email and password
+           Return: User details in JSON
+           Effects: None;
+       ---------------------------------------------------------------*/
 
+    function checkUserLogin(email,password) {
+        console.log("Start checkUserLogin ---->");
+        console.log(email);
+        console.log(password);
+        return User.find({$and:[{Email : email,password : password}]});
+    }
 
 
     return {
         createNewUser,
-		getUserList
+		getUserList,
+		checkUserLogin
 	};
 
 };
