@@ -30,6 +30,12 @@ module.exports = function (server, options, services) {
         })
         },
 
+        updateTripInfo: function (request, reply) {
+            TripService.updateTripInfo(request.payload)
+                .then(reply)
+                .catch(errorHandling(reply));
+        },
+
     };
 
 };

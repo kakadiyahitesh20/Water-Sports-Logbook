@@ -17,6 +17,7 @@ module.exports = function (server, options, controllers, components) {
     const {TripCtrl} = controllers;
     const {CreateNewTrips} = components.schema;
     const {GetTripsList} = components.schema;
+    const {UpdateTripInfo} = components.schema;
 
     var corsHeaders = {
         origin: ["*"],
@@ -79,5 +80,16 @@ module.exports = function (server, options, controllers, components) {
                     validate: GetTripsList
                 }
         },
+        {
+            method: "POST",
+            path: "/updateTripInfo",
+            config:
+                {
+                    handler: TripCtrl.updateTripInfo,
+                    description: "Update trip info in the DB",
+                    tags: ["api"],
+                    validate: UpdateTripInfo
+                }
+        }
 	];
 };

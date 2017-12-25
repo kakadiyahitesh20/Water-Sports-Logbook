@@ -36,10 +36,23 @@ module.exports = function (server, options, components) {
         return Trips.find();
     }
 
+    /*  ---------------------------------------------------------------
+            Update Trip
+            Params: tripInfo and Id - the trip to Update
+			Return: successful trip creation
+			Effects: None;
+        ---------------------------------------------------------------*/
+
+
+    function updateTripInfo(updateTripInfo) {
+        console.log("Start updateTripInfo ---->");
+        return Trips.findOneAndUpdate({_id:updateTripInfo._id}, updateTripInfo);
+    }
 
     return {
         createNewTrip,
-        getTripList
+        getTripList,
+        updateTripInfo,
     };
 
 };
