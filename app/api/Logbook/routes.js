@@ -4,11 +4,19 @@ const cors = require('hapi-cors');
 
 module.exports = function (server, options, controllers, components) {
 
+    // USER CONTROLLER
+
 	const {UserCtrl} = controllers;
 	const {CreateUser} = components.schema;
 	const {GetUserList} = components.schema;
     const {CheckUsersLogin} = components.schema;
 
+
+    // TRIP CONTROLLER
+
+    const {TripCtrl} = controllers;
+    const {CreateNewTrips} = components.schema;
+    const {GetTripsList} = components.schema;
 
     var corsHeaders = {
         origin: ["*"],
@@ -47,6 +55,28 @@ module.exports = function (server, options, controllers, components) {
                     description: "Check user login in DB",
                     tags: ["api"],
                     validate: CheckUsersLogin
+                }
+        },
+        {
+            method: "POST",
+            path: "/createNewTrip",
+            config:
+                {
+                    handler: TripCtrl.createNewTrip,
+                    description: "Create a new trip in the DB",
+                    tags: ["api"],
+                    validate: CreateNewTrips
+                }
+        },
+        {
+            method: "GET",
+            path: "/getTripsList",
+            config:
+                {
+                    handler: TripCtrl.getTripsList,
+                    description: "Get a trips list from DB",
+                    tags: ["api"],
+                    validate: GetTripsList
                 }
         },
 	];

@@ -1,5 +1,5 @@
 /**
- * mongoose module to track contest details
+ * mongoose module to track users details
  */
 'use strict';
 
