@@ -1,5 +1,5 @@
 export default function userReducer(state = [], action) {
-    debugger;
+    // debugger;
     switch(action.type) {
         case 'CREATE_USER':
             return [...state,

@@ -21,7 +21,7 @@ class App extends React.Component {
         this.props.createUser(this.state.user);
     };
     render() {
-        debugger;
+        // debugger;
         const{user}=  this.state;
         const{users} = this.props;
 
@@ -40,7 +40,7 @@ class App extends React.Component {
 
 }
 function mapStateToProps(state, ownProps) {
-    debugger;
+    // debugger;
     return {
         users: state.users
     };

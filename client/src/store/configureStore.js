@@ -1,11 +1,16 @@
-import {createStore, applyMiddleware} from 'redux';
+import {createStore,combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
-import rootReducer from '../reducers';
+import logger from 'redux-logger';
 
-export default function configureStore(initialState) {
+//import rootReducer from '../reducers';
+import users from "../reducers/userReducer";
+
+export default function configureStore(initialState){
     return createStore(
-        rootReducer,
-        initialState,
-        applyMiddleware(thunk)
+        combineReducers({
+                users
+        }),
+        {},
+        applyMiddleware(thunk, logger)
     );
 }
