@@ -12,7 +12,7 @@ export function createUser() {
     let config = {'api-key': 'RReio98$3#hsdhfDFSe31&sE4e5665DGs'};
     const request = axios({
         method: 'GET',
-        url: 'http://localhost:8099/getUsersList',
+        url: 'http://localhost:8098/getUsersList',
         headers: config,
          });
     return (dispatch) => {
@@ -25,7 +25,7 @@ export function getTripList() {
     let config = {'api-key': 'RReio98$3#hsdhfDFSe31&sE4e5665DGs'};
     const request = axios({
         method: 'GET',
-        url: 'http://localhost:8099/getTripsList',
+        url: 'http://localhost:8098/getTripsList',
         headers: config,
     });
     return (dispatch) => {
@@ -39,7 +39,7 @@ export function createTrip(trip) {
     let config = {'api-key': 'RReio98$3#hsdhfDFSe31&sE4e5665DGs'};
     const request = axios({
         method: 'POST',
-        url: 'http://localhost:8099/createNewTrip',
+        url: 'http://localhost:8098/createNewTrip',
         headers: config,
         data: trip
     });

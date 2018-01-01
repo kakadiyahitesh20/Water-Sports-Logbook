@@ -43,7 +43,7 @@ class CreateTrip extends React.Component {
     render() {
         const {form} = this.state;
         const {id} = this.props;
-        debugger;
+        //debugger;
         return <CreateTripComponent
                 onChange={this.updateForm}
                 createTrip={this.createTrip}

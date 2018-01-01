@@ -5,7 +5,7 @@ class Login extends React.Component {
     render() {
         return <div>
             welcome to login<br/>
-            <Link to={`/tripView/5a393cdd207aa127408cdad5`}>Create Trip</Link>
+            <Link to={`/tripView/5a415e659b8578290c22497a`}>Create Trip</Link>
         </div>
     }
 }
