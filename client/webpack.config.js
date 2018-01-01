@@ -7,15 +7,6 @@ module.exports = {
         path: __dirname + '/dist',
         filename: 'bundle.js',
     },
-    module: {
-        rules: [
-            {
-                test: /\.jsx?$/,
-                use: 'babel-loader',
-                exclude: /node_modules/
-            },
-        ],
-    },
     resolve: {
         extensions: ['.js', '.jsx']
     },
@@ -23,5 +14,35 @@ module.exports = {
         new HtmlWebpackPlugin({template: __dirname + '/index.html'}),
         new CleanWebpackPlugin(['dist']),
     ],
+    module: {
+        rules: [
+            {
+                test: /\.jsx?$/,
+                use: 'babel-loader',
+                exclude: /node_modules/
+            },
+            {
+                test: /\.css$/,
+                exclude: /node_modules/,
+                use: ['style-loader', 'css-loader'],
+            }, {
+                test: /\.css$/,
+                include: /node_modules/,
+                use: ['style-loader', 'css-loader'],
+            },
+
+            {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader'},
+
+            {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url-loader?limit=10000&mimetype=application/octet-stream'},
+            {test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url-loader?limit=10000&mimetype=application/font-woff'},
+            {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url-loader?limit=10000&mimetype=image/svg+xml'}
+
+        ]
+    },
+
+
     devtool: 'inline-source-map',
-}
+};
