@@ -1,19 +1,72 @@
-import React from 'react'
+import React from 'react';
+import { Router, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import Login from './components/login/login';
+import { HomePage } from './components/HomePage/HomePage';
+import  { myHistory } from './historyHelper';
+//import { alertActions } from '../_actions';
+import { PrivateRoute } from  './components/privateRoute/PrivateRoute';
+
+// import { LoginPage } from '../LoginPage';
+// import { RegisterPage } from '../RegisterPage';
 
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+
+        const { dispatch } = this.props;
+        myHistory.listen((location, action) => {
+            // clear alert on location change
+           // dispatch(alertActions.clear());
+        });
+    }
 
     render() {
-
+        const { alert } = this.props;
         return (
-            <div className="container-fluid">
-                {this.props.children}
+            <div className="jumbotron">
+                <div className="container">
+                    <div className="col-sm-8 col-sm-offset-2">
+
+                        <Router history={myHistory}>
+                            <div>
+                                <PrivateRoute exact path="/" component={HomePage} />
+                                <Route path="/login" component={Login} />
+                                {/*<Route path="/register" component={RegisterPage} />*/}
+                            </div>
+                        </Router>
+                    </div>
+                </div>
             </div>
         );
     }
-
 }
-export default App;
 
+function mapStateToProps(state) {
+    const { alert } = state;
+    return {
+        alert
+    };
+}
+
+const connectedApp = connect(mapStateToProps)(App);
+export { connectedApp as App };
+// import React from 'react'
+//
+// class App extends React.Component {
+//
+//     render() {
+//
+//         return (
+//             <div className="container-fluid">
+//                 {this.props.children}
+//             </div>
+//         );
+//     }
+//
+// }
+// export default App;
+/////////////////////////////////////////////////////////
 // import React from 'react'
 // import Modal from 'react-modal'
 // import {connect} from 'react-redux'
