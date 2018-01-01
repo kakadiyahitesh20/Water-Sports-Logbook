@@ -11,7 +11,7 @@ export function createUser(user) {
         "Access-Control-Allow-Headers": "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, If-Modified-Since, Access-Control-Request-Method, Access-Control-Request-Headers, api-key"};
     const request = axios({
         method: 'GET',
-        url: 'http://localhost:8099/getUsersList',
+        url: 'http://localhost:8098/getUsersList',
         headers: config,
          });
     return (dispatch) => {
