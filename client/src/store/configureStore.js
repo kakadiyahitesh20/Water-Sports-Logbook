@@ -4,11 +4,13 @@ import logger from 'redux-logger';
 
 //import rootReducer from '../reducers';
 import users from "../reducers/userReducer";
+import {authentication} from '../reducers/authentication.reducer'
 
 export default function configureStore(initialState){
     return createStore(
         combineReducers({
-                users
+                users,
+            authentication
         }),
         {},
         applyMiddleware(thunk, logger)

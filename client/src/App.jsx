@@ -1,14 +1,10 @@
 import React from 'react';
 import { Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Login from './components/login/login';
+import { Login } from './components/login/login';
 import { HomePage } from './components/HomePage/HomePage';
 import  { myHistory } from './historyHelper';
-//import { alertActions } from '../_actions';
 import { PrivateRoute } from  './components/privateRoute/PrivateRoute';
-
-// import { LoginPage } from '../LoginPage';
-// import { RegisterPage } from '../RegisterPage';
 
 class App extends React.Component {
     constructor(props) {
@@ -17,7 +13,7 @@ class App extends React.Component {
         const { dispatch } = this.props;
         myHistory.listen((location, action) => {
             // clear alert on location change
-           // dispatch(alertActions.clear());
+           //dispatch(alertActions.clear());
         });
     }
 
