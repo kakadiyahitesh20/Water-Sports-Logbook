@@ -21,6 +21,8 @@ export function createUser() {
         })
     }
 }
+
+
 export function getTripList() {
     let config = {'api-key': 'RReio98$3#hsdhfDFSe31&sE4e5665DGs'};
     const request = axios({
@@ -48,4 +50,33 @@ export function createTrip(trip) {
             console.log(data);
         })
     }
+}
+
+export function checkUserLogin(user) {
+    let config = {'api-key': 'RReio98$3#hsdhfDFSe31&sE4e5665DGs'};
+    const requestOptions = {
+        method: 'GET',
+        headers: config
+    };
+    return fetch('http://localhost:8098/checkUserLogin/'+user.email+'/'+user.password, requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                return Promise.reject(response.statusText);
+            }
+            return response.json();
+        })
+        .then(user => {
+            // login successful if there's object the response
+            if (user) {
+                console.log( ' user ');
+                // store user details in local storage
+                localStorage.setItem('user', JSON.stringify(user));
+            }
+
+            return user;
+        });
+}
+export function log_out() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('user');
 }
