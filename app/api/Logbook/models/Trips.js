@@ -16,8 +16,10 @@ module.exports = new mongoose.Schema({
     arrival: {
         type: Date
     },
-    transportType: String
-}, {
+    transportType: String,
+    status : String
+},
+    {
     // add "created at" & "updated at" time stamps.
     timestamps: true
 });

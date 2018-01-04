@@ -36,6 +36,12 @@ module.exports = function (server, options, services) {
                 .catch(errorHandling(reply));
         },
 
+        removeTrip: function (request, reply) {
+            TripService.removeTrip(request.params.tripId)
+                .then(reply)
+                .catch(errorHandling(reply));
+        },
+
     };
 
 };

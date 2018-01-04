@@ -18,7 +18,8 @@ module.exports = {
         destination: Joi.string().min(3).max(60).required(),
         departure: Joi.date().required(),
         arrival: Joi.date().required(),
-        transportType: Joi.string().min(3).max(60).required()
+        transportType: Joi.string().min(3).max(60).required(),
+        status: Joi.string().required(),
     }
 };
 

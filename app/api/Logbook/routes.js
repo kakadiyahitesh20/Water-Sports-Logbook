@@ -18,6 +18,7 @@ module.exports = function (server, options, controllers, components) {
     const {CreateNewTrips} = components.schema;
     const {GetTripsList} = components.schema;
     const {UpdateTripInfo} = components.schema;
+    const {RemoveTrip} = components.schema;
 
     var corsHeaders = {
         origin: ["*"],
@@ -89,6 +90,17 @@ module.exports = function (server, options, controllers, components) {
                     description: "Update trip info in the DB",
                     tags: ["api"],
                     validate: UpdateTripInfo
+                }
+        },
+        {
+            method: "POST",
+            path: "/removeTrip/{tripId}",
+            config:
+                {
+                    handler: TripCtrl.removeTrip,
+                    description: "Remove trip in the DB",
+                    tags: ["api"],
+                    validate: RemoveTrip
                 }
         }
 	];
