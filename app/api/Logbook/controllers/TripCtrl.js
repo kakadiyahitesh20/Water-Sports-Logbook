@@ -16,6 +16,8 @@ module.exports = function (server, options, services) {
     return {
 
         createNewTrip: function (request, reply) {
+            console.log("TripCtrl --> createNewTrip");
+            // Call the trips service to create new trip
             TripService.createNewTrip(request.payload)
                 .then(reply)
                 .catch(errorHandling(reply));
@@ -30,13 +32,27 @@ module.exports = function (server, options, services) {
         })
         },
 
+
+        getTripsListById: function (request, reply) {
+            console.log("TripCtrl --> getTripsListById");
+            // Call the trip service to get a specific trip list by id
+            TripService.getTripsListById(request.params.userId)
+                .then(tripListByUser => {
+                reply(tripListByUser);
+        })
+        },
+
         updateTripInfo: function (request, reply) {
+            console.log("TripCtrl --> updateTripInfo");
+            // Call the trip service to update a specific trip
             TripService.updateTripInfo(request.payload)
                 .then(reply)
                 .catch(errorHandling(reply));
         },
 
         removeTrip: function (request, reply) {
+            console.log("TripCtrl --> removeTrip");
+            // Call the trip service to remove a specific trip
             TripService.removeTrip(request.params.tripId)
                 .then(reply)
                 .catch(errorHandling(reply));

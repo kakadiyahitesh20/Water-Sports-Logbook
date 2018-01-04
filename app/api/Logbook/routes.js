@@ -19,6 +19,7 @@ module.exports = function (server, options, controllers, components) {
     const {GetTripsList} = components.schema;
     const {UpdateTripInfo} = components.schema;
     const {RemoveTrip} = components.schema;
+    const {GetTripsListById} = components.schema;
 
     var corsHeaders = {
         origin: ["*"],
@@ -79,6 +80,17 @@ module.exports = function (server, options, controllers, components) {
                     description: "Get a trips list from DB",
                     tags: ["api"],
                     validate: GetTripsList
+                }
+        },
+        {
+            method: "GET",
+            path: "/getTripsListById/{userId}",
+            config:
+                {
+                    handler: TripCtrl.getTripsListById,
+                    description: "Get a trips by user Id from DB",
+                    tags: ["api"],
+                    validate: GetTripsListById
                 }
         },
         {

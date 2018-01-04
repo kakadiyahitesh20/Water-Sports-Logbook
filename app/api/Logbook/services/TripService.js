@@ -57,15 +57,30 @@ module.exports = function (server, options, components) {
      ---------------------------------------------------------------*/
 
     function removeTrip(tripId) {
-        console.log("removeTrip");
+        console.log("Start removeTrip ---->" +tripId);
         return Trips.findOneAndUpdate({_id : tripId},{'status':'Inactive'});
     }
+
+    /*  ---------------------------------------------------------------
+        Get trips List by Id
+        Params: None
+        Return: Trips list in JSON particular user
+        Effects: None;
+    ---------------------------------------------------------------*/
+
+    function getTripsListById(userId) {
+        console.log("Start getTripsListById ---->" +userId);
+        return Trips.find({userId : userId});
+    }
+
+
 
     return {
         createNewTrip,
         getTripList,
         updateTripInfo,
         removeTrip,
+        getTripsListById,
     };
 
 };
