@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import Link from "react-router/es/Link";
 import { connect } from 'react-redux';
 import {userConstants} from "../../_constants/user.constants";
 import {login, logout} from "../../actions/loginAction";

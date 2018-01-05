@@ -20,6 +20,7 @@ class TripView extends React.Component {
     }
     render() {
         const {createTripView} = this.state;
+       // debugger;
         return <div className="container">
             <Header  module={createTripView ? "create" : "getTripList"}
                      onChangeNavigation={this.onChangeNavigation}/>

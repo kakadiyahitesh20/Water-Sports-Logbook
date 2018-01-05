@@ -17,6 +17,9 @@ class Header extends React.Component {
                     <li className={getClassName("getTripList")} onClick={() => onChangeNavigation("tripList")}>
                         <a className="nav-link" href="#">Get TripList</a>
                     </li>
+                    <li className={getClassName("getTripList")}>
+                        <a className="nav-link" href="/logout">Logout</a>
+                    </li>
                 </ul>
             </div>
         </nav>

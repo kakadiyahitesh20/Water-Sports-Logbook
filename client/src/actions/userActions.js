@@ -66,12 +66,6 @@ export function checkUserLogin(user) {
             return response.json();
         })
         .then(user => {
-            // login successful if there's object the response
-            if (user) {
-                console.log( ' user ');
-                // store user details in local storage
-                localStorage.setItem('user', JSON.stringify(user));
-            }
 
             return user;
         });

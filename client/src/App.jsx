@@ -5,7 +5,7 @@ import { Login } from './components/login/login';
 import { HomePage } from './components/HomePage/HomePage';
 import  { myHistory } from './historyHelper';
 import { PrivateRoute } from  './components/privateRoute/PrivateRoute';
-
+import TripView from "./components/trip-view/trip-view";
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -25,6 +25,7 @@ class App extends React.Component {
                                 <PrivateRoute exact path="/" component={HomePage} />
                                 <Route path="/login" component={Login} />
                                 {/*<Route path="/register" component={RegisterPage} />*/}
+                                <Route path="/tripView/:id" component={TripView}/>
                             </div>
                         </Router>
                     </div>
