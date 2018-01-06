@@ -32,7 +32,7 @@ class Login extends React.Component {
         const { username, password } = this.state;
         const { dispatch } = this.props;
         if (username && password) {
-            dispatch(login(username, password));
+        dispatch(login(username, password));
         }
     }
 

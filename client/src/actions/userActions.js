@@ -8,18 +8,65 @@ export function tripsList(trips) {
 }
 
 
-export function createUser() {
+export function createUser(user) {
+     console.log('user inside: ', user);
     let config = {'api-key': 'RReio98$3#hsdhfDFSe31&sE4e5665DGs'};
-    const request = axios({
-        method: 'GET',
-        url: 'http://localhost:8098/getUsersList',
-        headers: config,
-         });
-    return (dispatch) => {
-        request.then(({data}) =>{
-            dispatch(createdUser(user));
+    // const requestOptions = {
+    //     method: 'POST',
+    //     headers: config,
+    //     data: {
+    //         "Name": user.name,
+    //         "Email": user.email,
+    //         "dob": user.dob,
+    //         "password": user.password
+    //     }
+    // };
+    // return fetch('http://localhost:8098/createNewUser', requestOptions)
+    //     .then(response => {
+    //         if (!response.ok) {
+    //             return Promise.reject(response.statusText);
+    //         }
+    //         return response.json();
+    //     })
+    //     .then(user => {
+    //
+    //         return user;
+    //     });
+    // let config = {'api-key': 'RReio98$3#hsdhfDFSe31&sE4e5665DGs'};
+    // const request = axios({
+    //     method: 'POST',
+    //     url: 'http://localhost:8098/createNewUser',
+    //
+    //     headers: config,
+    //     data: {
+    //         "Name": user.name,
+    //         "Email": user.email,
+    //         "dob": user.dob,
+    //         "password": user.password
+    //     }
+    //      });
+    // return () => {
+    //     request.then(({response}) =>{
+    //     })
+    // }
+
+    // Send a POST request
+    return axios.post('http://localhost:8098/createNewUser', {
+                "Name": user.name,
+                "Email": user.email,
+                "dob": user.dob,
+                "password": user.password
+    }, {
+        headers: {
+            'api-key': 'RReio98$3#hsdhfDFSe31&sE4e5665DGs',
+        }
+    })
+        .then(function (response) {
+            return(response);
         })
-    }
+        .catch(function (error) {
+            return(error);
+        });
 }
 
 

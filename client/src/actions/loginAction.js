@@ -1,5 +1,5 @@
 import {userConstants} from "../_constants/user.constants";
-import {checkUserLogin, log_out} from "./userActions";
+import {checkUserLogin, log_out, createUser} from "./userActions";
 import {Link} from "react-router/es/Link";
 import {browserHistory} from 'react-router';
 import {Route, Redirect} from 'react-router-dom';
@@ -22,11 +22,9 @@ export function login(username, password) {
                     else{
                         dispatch(failure('User not found'));
                     }
-
                 },
                 error => {
                     dispatch(failure(error));
-                   // dispatch(alertActions.error(error));
                 }
             );
     };
@@ -38,4 +36,33 @@ export function login(username, password) {
 export function logout() {
     log_out();
     return { type: userConstants.LOGOUT };
+}
+
+export function register(user) {
+    return dispatch => {
+        dispatch(request(user))
+        console.log('user register ...', user);
+       var result =  createUser(user)
+           .then(
+           response => {
+               console.log(response);
+               if (response.status == 200) {
+                   console.log( ' user name:', response.data.name);
+                   dispatch(success(response.data));
+                   browserHistory.push('/');//tripview/'+response.data._id);
+               }
+               else{
+                   dispatch(failure('registration failed'));
+               }
+           },
+           error => {
+               dispatch(failure(error));
+               // dispatch(alertActions.error(error));
+           }
+       );
+    };
+
+    function request(user) { return { type: userConstants.REGISTER_REQUEST, user } }
+    function success(user) { return { type: userConstants.REGISTER_SUCCESS, user } }
+    function failure(error) { return { type: userConstants.REGISTER_FAILURE, error } }
 }
