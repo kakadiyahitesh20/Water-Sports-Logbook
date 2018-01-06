@@ -8,24 +8,73 @@ export function tripsList(trips) {
 }
 
 
-export function createUser() {
+export function createUser(user) {
+     console.log('user inside: ', user);
     let config = {'api-key': 'RReio98$3#hsdhfDFSe31&sE4e5665DGs'};
-    const request = axios({
-        method: 'GET',
-        url: 'http://localhost:8099/getUsersList',
-        headers: config,
-         });
-    return (dispatch) => {
-        request.then(({data}) =>{
-            dispatch(createdUser(user));
+    // const requestOptions = {
+    //     method: 'POST',
+    //     headers: config,
+    //     data: {
+    //         "Name": user.name,
+    //         "Email": user.email,
+    //         "dob": user.dob,
+    //         "password": user.password
+    //     }
+    // };
+    // return fetch('http://localhost:8098/createNewUser', requestOptions)
+    //     .then(response => {
+    //         if (!response.ok) {
+    //             return Promise.reject(response.statusText);
+    //         }
+    //         return response.json();
+    //     })
+    //     .then(user => {
+    //
+    //         return user;
+    //     });
+    // let config = {'api-key': 'RReio98$3#hsdhfDFSe31&sE4e5665DGs'};
+    // const request = axios({
+    //     method: 'POST',
+    //     url: 'http://localhost:8098/createNewUser',
+    //
+    //     headers: config,
+    //     data: {
+    //         "Name": user.name,
+    //         "Email": user.email,
+    //         "dob": user.dob,
+    //         "password": user.password
+    //     }
+    //      });
+    // return () => {
+    //     request.then(({response}) =>{
+    //     })
+    // }
+
+    // Send a POST request
+    return axios.post('http://localhost:8098/createNewUser', {
+                "Name": user.name,
+                "Email": user.email,
+                "dob": user.dob,
+                "password": user.password
+    }, {
+        headers: {
+            'api-key': 'RReio98$3#hsdhfDFSe31&sE4e5665DGs',
+        }
+    })
+        .then(function (response) {
+            return(response);
         })
-    }
+        .catch(function (error) {
+            return(error);
+        });
 }
+
+
 export function getTripList() {
     let config = {'api-key': 'RReio98$3#hsdhfDFSe31&sE4e5665DGs'};
     const request = axios({
         method: 'GET',
-        url: 'http://localhost:8099/getTripsList',
+        url: 'http://localhost:8098/getTripsList',
         headers: config,
     });
     return (dispatch) => {
@@ -39,7 +88,7 @@ export function createTrip(trip) {
     let config = {'api-key': 'RReio98$3#hsdhfDFSe31&sE4e5665DGs'};
     const request = axios({
         method: 'POST',
-        url: 'http://localhost:8099/createNewTrip',
+        url: 'http://localhost:8098/createNewTrip',
         headers: config,
         data: trip
     });
@@ -48,4 +97,27 @@ export function createTrip(trip) {
             console.log(data);
         })
     }
+}
+
+export function checkUserLogin(user) {
+    let config = {'api-key': 'RReio98$3#hsdhfDFSe31&sE4e5665DGs'};
+    const requestOptions = {
+        method: 'GET',
+        headers: config
+    };
+    return fetch('http://localhost:8098/checkUserLogin/'+user.email+'/'+user.password, requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                return Promise.reject(response.statusText);
+            }
+            return response.json();
+        })
+        .then(user => {
+
+            return user;
+        });
+}
+export function log_out() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('user');
 }

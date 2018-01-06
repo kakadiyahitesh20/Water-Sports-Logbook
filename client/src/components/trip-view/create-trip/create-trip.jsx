@@ -34,7 +34,7 @@ class CreateTrip extends React.Component {
         let data = this.state.form;
         data.departure = this.convertToDate(data.departure);
         data.arrival= this.convertToDate(data.arrival);
-       this.props.createTrip(data);
+        this.props.createTrip(data);
     }
     convertToDate (value) {
         var parts =value.toString().split('/');
@@ -43,12 +43,12 @@ class CreateTrip extends React.Component {
     render() {
         const {form} = this.state;
         const {id} = this.props;
-        debugger;
+        //debugger;
         return <CreateTripComponent
-                onChange={this.updateForm}
-                createTrip={this.createTrip}
-                form={form}
-                userId={id}/>
+            onChange={this.updateForm}
+            createTrip={this.createTrip}
+            form={form}
+            userId={id}/>
     }
 }
 function mapStateToProps(state, ownProps) {

@@ -18,7 +18,7 @@ class TripList extends React.Component {
     }
 }
 function mapStateToProps(state, ownProps) {
-    debugger;
+    //debugger;
     return {
         trips: state.trips
     };
