@@ -1,24 +1,40 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {createTrip, createUser} from "../../../actions/userActions";
+import {createTrip, updateTrip} from "../../../actions/userActions";
 import CreateTripComponent from "./create-trip-componet";
+import 'react-datepicker/dist/react-datepicker.css';
+import moment from 'moment';
+
 
 class CreateTrip extends React.Component {
     constructor(props) {
         super(props);
+        debugger;
         this.state = {
-            form: {
-                userId: props.id,
-                source: "",
-                destination: "",
-                departure: "",
-                arrival: "",
-                transportType: "",
-            }
+            form: (props.editTripValues !== null) ?
+                {
+                    source: props.editTripValues.source,
+                    destination: props.editTripValues.destination,
+                    departure: props.editTripValues.departure,
+                    arrival: props.editTripValues.arrival,
+                    transportType: props.editTripValues.transportType,
+                    userId: props.editTripValues.userId,
+                    status: "Active",
+                    _id: props.editTripValues._id
+                } : {
+                    source: "",
+                    destination: "",
+                    departure: moment(),
+                    arrival: moment(),
+                    transportType: "",
+                    userId: props.id,
+                    status: "Active"
+                }
         };
         this.updateForm = this.updateForm.bind(this);
         this.createTrip = this.createTrip.bind(this);
-        this.convertToDate = this.convertToDate.bind(this);
+        this.updateDepartureDate = this.updateDepartureDate.bind(this);
+        this.updateArrivalDate = this.updateArrivalDate.bind(this);
     }
 
     updateForm(event) {
@@ -30,36 +46,59 @@ class CreateTrip extends React.Component {
         });
     }
 
+    updateDepartureDate(date) {
+        this.setState({
+            form: {
+                ...this.state.form,
+                departure: date
+            }
+        });
+    }
+
+    updateArrivalDate(date) {
+        this.setState({
+            form: {
+                ...this.state.form,
+                arrival: date
+            }
+        });
+    }
+
     createTrip() {
         let data = this.state.form;
-        data.departure = this.convertToDate(data.departure);
-        data.arrival= this.convertToDate(data.arrival);
-        this.props.createTrip(data);
+        if(this.props.editTripValues !== null) {
+            this.props.updateTrip(data);
+        } else {
+            this.props.createTrip(data);
+        }
+
     }
-    convertToDate (value) {
-        var parts =value.toString().split('/');
-        return new Date(parts[2],parts[0]-1,parts[1]);
-    }
+
     render() {
         const {form} = this.state;
-        const {id} = this.props;
-        //debugger;
+        const {id, editTripValues} = this.props;
         return <CreateTripComponent
             onChange={this.updateForm}
             createTrip={this.createTrip}
             form={form}
-            userId={id}/>
+            userId={id}
+            isEditTrip={(editTripValues !== null)? true: false}
+            updateDepartureDate={this.updateDepartureDate}
+            updateArrivalDate={this.updateArrivalDate}/>
     }
 }
+
 function mapStateToProps(state, ownProps) {
     return {
-        trips: state
+        trips: state.trips
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        createTrip: trip => dispatch(createTrip(trip))
+        createTrip: trip => dispatch(createTrip(trip)),
+        updateTrip: trip => dispatch(updateTrip(trip))
     }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(CreateTrip);

@@ -1,7 +1,5 @@
 import axios from 'axios';
-export function createdUser(user) {
-    return { type: 'CREATE_USER', user}
-}
+
 export function tripsList(trips) {
     debugger;
     return { type: 'TRIP_LIST', trips}
@@ -70,11 +68,11 @@ export function createUser(user) {
 }
 
 
-export function getTripList() {
+export function getTripListById(id) {
     let config = {'api-key': 'RReio98$3#hsdhfDFSe31&sE4e5665DGs'};
     const request = axios({
         method: 'GET',
-        url: 'http://localhost:8098/getTripsList',
+        url: 'http://localhost:8098/getTripsListById/'+id,
         headers: config,
     });
     return (dispatch) => {
@@ -94,7 +92,39 @@ export function createTrip(trip) {
     });
     return (dispatch) => {
         request.then(({data}) =>{
-            console.log(data);
+            alert("Trip created successfully");
+        })
+    }
+}
+export function updateTrip(trip) {
+    let config = {'api-key': 'RReio98$3#hsdhfDFSe31&sE4e5665DGs'};
+    const request = axios({
+        method: 'POST',
+        url: 'http://localhost:8098/updateTripInfo',
+        headers: config,
+        data: trip
+    });
+    return (dispatch) => {
+        request.then(({data}) =>{
+            alert("Trip updated successfully")
+        })
+    }
+}
+export function deletedTrip(tripId) {
+    return { type: 'DELETE_TRIP', tripId}
+}
+
+export function deleteTrip(tripId) {
+    debugger;
+    let config = {'api-key': 'RReio98$3#hsdhfDFSe31&sE4e5665DGs'};
+    const request = axios({
+        method: 'POST',
+        url: 'http://localhost:8098/removeTrip/'+tripId,
+        headers: config,
+    });
+    return (dispatch) => {
+        request.then(({data}) =>{
+            dispatch(deletedTrip(tripId));
         })
     }
 }
