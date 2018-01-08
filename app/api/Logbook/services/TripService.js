@@ -33,7 +33,7 @@ module.exports = function (server, options, components) {
 
     function getTripList() {
         console.log("Start getTripsList ---->");
-        return Trips.find({'status':'Active'});
+        return Trips.find();
     }
 
     /*  ---------------------------------------------------------------
@@ -58,7 +58,7 @@ module.exports = function (server, options, components) {
 
     function removeTrip(tripId) {
         console.log("Start removeTrip ---->" +tripId);
-        return Trips.findOneAndUpdate({_id : tripId},{'status':'Inactive'});
+        return Trips.findOneAndUpdate({_id : tripId},{'status':'Deleted'});
     }
 
     /*  ---------------------------------------------------------------
