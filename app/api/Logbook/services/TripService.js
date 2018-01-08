@@ -73,6 +73,30 @@ module.exports = function (server, options, components) {
         return Trips.find({userId : userId});
     }
 
+    /*  ---------------------------------------------------------------
+        Get trip boat1 count by trip type
+        Params: None
+        Return: Trips list in JSON particular user
+        Effects: None;
+    ---------------------------------------------------------------*/
+
+    function getTripsBoat1Count() {
+        console.log("Start getTripsBoat1Count ---->");
+        return Trips.find({transportType : "Boat1"}).count();
+    }
+
+    /*  ---------------------------------------------------------------
+       Get trip boat2 count by trip type
+       Params: None
+       Return: Trips list in JSON particular user
+       Effects: None;
+   ---------------------------------------------------------------*/
+
+    function getTripsBoat2Count() {
+        console.log("Start getTripsBoat2Count ---->");
+        return Trips.find({transportType : "Boat2"}).count();
+    }
+
 
 
     return {
@@ -81,6 +105,8 @@ module.exports = function (server, options, components) {
         updateTripInfo,
         removeTrip,
         getTripsListById,
+        getTripsBoat1Count,
+        getTripsBoat2Count,
     };
 
 };

@@ -26,10 +26,23 @@ module.exports = function (server, options, services) {
         getTripsList: function (request, reply) {
             console.log("TripCtrl --> getTripsList");
             // Call the trips service to get a specific trip list
+
             TripService.getTripList()
                 .then(tripsList => {
-                reply(tripsList);
+                TripService.getTripsBoat1Count()
+                .then(tripsListBoat1Count => {
+                TripService.getTripsBoat2Count()
+                .then(tripsListBoat2Count => {
+                reply({results: tripsList, Boat1count: tripsListBoat1Count, Boat2count: tripsListBoat2Count});
         })
+        })
+        })
+        .catch(errorHandling(reply));
+
+           /* TripService.getTripList()
+                .then(tripsList => {
+                reply(tripsList);
+        })*/
         },
 
 
