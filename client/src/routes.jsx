@@ -7,6 +7,7 @@ import {Login} from "./components/login/login";
 import {PrivateRoute} from "./components/privateRoute/PrivateRoute";
 import {HomePage} from "./components/HomePage/HomePage";
 import {RegisterPage} from "./components/RegisterPage/RegisterPage";
+import AdminView from "./components/adminview/adminView";
 
 export default (
     <Route path="/" component= {App}>
@@ -17,6 +18,7 @@ export default (
         <Route path="/register" component={RegisterPage} />
         <Route path="/logout" component={Login} />
         <Route path="/tripView/:id" component={TripView}/>
+        <Route path="/adminView/:id" component={AdminView}/>
 
     </Route>
 );
