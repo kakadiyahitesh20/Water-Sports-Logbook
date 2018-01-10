@@ -14,7 +14,7 @@ class Report1 extends React.Component{
         }
         return groups.map((trip) => {
             return (
-              <li key={trip.name}>{trip.name} {trip.length}</li>
+                <tr key={trip.name}><td>{trip.name}</td><td>{trip.length}</td></tr>
             );
         })
     }
@@ -26,9 +26,17 @@ class Report1 extends React.Component{
 
         return <div>
             <h1>Boats summary :</h1>
-            <ul>
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th >Boat</th>
+                        <th>Count</th>
+                    </tr>
+                </thead>
+                <tbody>
                 {this.ShowListItem()}
-            </ul>
+                </tbody>
+            </table>
 
         </div>
     }
