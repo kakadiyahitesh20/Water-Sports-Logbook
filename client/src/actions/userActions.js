@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 export function tripsList(trips) {
-    debugger;
     return { type: 'TRIP_LIST', trips}
 }
 
@@ -27,7 +26,6 @@ export function createUser(user) {
         });
 }
 
-
 export function getTripListById(id) {
     let config = {'api-key': 'RReio98$3#hsdhfDFSe31&sE4e5665DGs'};
     const request = axios({
@@ -38,6 +36,20 @@ export function getTripListById(id) {
     return (dispatch) => {
         request.then((trips) =>{
             dispatch(tripsList(trips.data));
+        })
+    }
+}
+export function getTripList() {
+    let config = {'api-key': 'RReio98$3#hsdhfDFSe31&sE4e5665DGs'};
+    const request = axios({
+        method: 'GET',
+        url: 'http://localhost:8098/getTripsList',
+        headers: config,
+    });
+    return (dispatch) => {
+        request.then((trips) =>{
+            console.log('trips.data : ', trips.data);
+            dispatch(tripsList(trips.data.results));
         })
     }
 }
@@ -106,6 +118,7 @@ export function checkUserLogin(user) {
 
             return user;
         });
+
 }
 export function log_out() {
     // remove user from local storage to log user out

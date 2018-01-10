@@ -10,7 +10,7 @@ class TripList extends React.Component {
 
     }
     componentDidMount() {
-        debugger;
+     //   debugger;
         this.props.getTripList(this.props.id);
     }
     deleteTripHandler(event, id) {

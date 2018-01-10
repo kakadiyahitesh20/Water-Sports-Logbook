@@ -6,7 +6,7 @@ class App extends React.Component {
 
         return (
         <div className="container-fluid">
-            {this.props.children}
+            {React.cloneElement(this.props.children, this.props)}
         </div>
         );
     }
