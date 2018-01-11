@@ -3,6 +3,9 @@ import axios from 'axios';
 export function tripsList(trips) {
     return { type: 'TRIP_LIST', trips}
 }
+export function userList(users) {
+    return { type: 'USER_LIST', users}
+}
 
 
 export function createUser(user) {
@@ -35,7 +38,7 @@ export function getTripListById(id) {
     });
     return (dispatch) => {
         request.then((trips) =>{
-            dispatch(tripsList(trips.data));
+            dispatch(tripsList(trips.data[0]));
         })
     }
 }
@@ -50,6 +53,20 @@ export function getTripList() {
         request.then((trips) =>{
             console.log('trips.data : ', trips.data);
             dispatch(tripsList(trips.data.results));
+        })
+    }
+}
+export function getUserList() {
+    let config = {'api-key': 'RReio98$3#hsdhfDFSe31&sE4e5665DGs'};
+    const request = axios({
+        method: 'GET',
+        url: 'http://localhost:8098/getUsersList',
+        headers: config,
+    });
+    return (dispatch) => {
+        request.then((users) =>{
+            debugger
+            dispatch(userList(users.data));
         })
     }
 }

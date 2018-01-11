@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from  'react-redux';
-import {getTripList, deleteTrip} from "../actions/userActions";
+import {getTripList, getUserList} from "../actions/userActions";
 class Report1 extends React.Component{
     constructor(props) {
         super(props);
     }
     ShowListItem(){
         var groups = [];
-        const grouped = _.groupBy(this.props.trips, "transportType");
+        const grouped = _.groupBy(this.props.trips.filter( x=> x.status !== 'Deleted'), "transportType");
         for(var group in grouped)
         {
             groups.push({"name" : group, "length" : grouped[group].length });
@@ -18,8 +18,25 @@ class Report1 extends React.Component{
             );
         })
     }
+    ShowAllTrip(){
+
+        return this.props.trips.filter( x=> x.status !== 'Deleted').map((trip) => {
+            return (
+                <tr key={trip._id}><td>{new Date(trip.departure).toLocaleDateString()}</td><td>{trip.source}</td><td>{trip.destination}</td></tr>
+            );
+        })
+    }
+    ShowAllUsers(){
+        debugger;
+        return this.props.users.map((user) => {
+            return (
+                <tr key={user._id}><td>{user.Name}</td><td>{user.Email}</td><td>{new Date(user.dob).toLocaleDateString()}</td></tr>
+            );
+        })
+    }
     componentDidMount() {
         this.props.getTripList();
+        this.props.getUserList();
     }
 
     render(){
@@ -38,17 +55,50 @@ class Report1 extends React.Component{
                 </tbody>
             </table>
 
+            <h1>All trips :</h1>
+            <table className="table">
+                <thead>
+                <tr>
+                    <th >departure</th>
+                    <th>Source</th>
+                    <th>destination</th>
+                </tr>
+                </thead>
+                <tbody>
+                {this.ShowAllTrip()}
+                </tbody>
+            </table>
+
+            <h1>All Users :</h1>
+            <table className="table">
+                <thead>
+                <tr>
+                    <th >Name</th>
+                    <th>Email</th>
+                    <th>DOB</th>
+                </tr>
+                </thead>
+                <tbody>
+                {this.ShowAllUsers()}
+                </tbody>
+            </table>
+
+
+
         </div>
     }
 }
 function mapStateToProps(state) {
     return {
-        trips: state.trips
+
+        trips: state.trips,
+        users: state.users
     };
 }
 function mapDispatchToProps(dispatch) {
     return {
         getTripList: (id) => dispatch(getTripList()),
+        getUserList: (id) => dispatch(getUserList()),
     }
 }
 
