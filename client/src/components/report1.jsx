@@ -42,33 +42,11 @@ class Report1 extends React.Component{
     render(){
 
         return <div>
-            <h1>Boats summary :</h1>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th >Boat</th>
-                        <th>Count</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {this.ShowListItem()}
-                </tbody>
-            </table>
-
-            <h1>All trips :</h1>
-            <table className="table">
-                <thead>
-                <tr>
-                    <th >departure</th>
-                    <th>Source</th>
-                    <th>destination</th>
-                </tr>
-                </thead>
-                <tbody>
-                {this.ShowAllTrip()}
-                </tbody>
-            </table>
-
+            <a href="#allUsers"> All Users </a> <br/>
+            <a href="#allTrips"> All Trips </a><br/>
+            <a href="#boatSummery"> Boat Summery </a><br/>
+            <a className="nav-link" href="/">Logout</a>
+            <div id="allUsers">
             <h1>All Users :</h1>
             <table className="table">
                 <thead>
@@ -82,6 +60,39 @@ class Report1 extends React.Component{
                 {this.ShowAllUsers()}
                 </tbody>
             </table>
+            </div>
+        <hr/>
+            <div id="allTrips">
+            <h1>All trips :</h1>
+            <table className="table">
+                <thead>
+                <tr>
+                    <th >departure</th>
+                    <th>Source</th>
+                    <th>destination</th>
+                </tr>
+                </thead>
+                <tbody>
+                {this.ShowAllTrip()}
+                </tbody>
+            </table>
+            </div>
+            <div id="boatSummery">
+            <h1>Boats summary :</h1>
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th >Boat</th>
+                        <th>Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {this.ShowListItem()}
+                </tbody>
+            </table>
+            </div>
+
+
 
 
 
