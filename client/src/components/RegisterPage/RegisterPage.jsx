@@ -2,7 +2,8 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 import Link from "react-router/es/Link";
 import { connect } from 'react-redux';
-
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 // import { userActions } from '../../actions/userActions'
 import {register} from "../../actions/loginAction";
 
@@ -14,7 +15,7 @@ class RegisterPage extends React.Component {
             user: {
                 name: '',
                 email: '',
-                dob: '',
+                dob: moment(),
                 password: ''
             },
             submitted: false
@@ -22,6 +23,7 @@ class RegisterPage extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDateChange = this.handleDateChange.bind(this);
     }
 
     handleChange(event) {
@@ -33,6 +35,15 @@ class RegisterPage extends React.Component {
                 [name]: value
             }
         });
+    }
+    handleDateChange(date) {
+        this.setState({
+            user: {
+                ...this.state.user,
+                dob: date
+            }
+        });
+
     }
 
     handleSubmit(event) {
@@ -70,7 +81,8 @@ class RegisterPage extends React.Component {
                     </div>
                     <div className={'form-group' + (submitted && !user.dob ? ' has-error' : '')}>
                         <label htmlFor="dob">dob</label>
-                        <input type="text" className="form-control" name="dob" value={user.dob} onChange={this.handleChange} />
+                        <DatePicker selected={user.dob}
+                                    onChange={this.handleDateChange}/>
                         {submitted && !user.dob &&
                             <div className="help-block">dob is required</div>
                         }

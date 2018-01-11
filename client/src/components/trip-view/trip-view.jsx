@@ -23,7 +23,6 @@ class TripView extends React.Component {
         })
     }
     editTripHandler (trip) {
-        debugger;
         this.setState ({
             createTripView : true,
             editTripValues : trip

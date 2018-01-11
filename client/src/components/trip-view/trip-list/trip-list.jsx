@@ -10,7 +10,6 @@ class TripList extends React.Component {
 
     }
     componentDidMount() {
-        debugger;
         this.props.getTripList(this.props.id);
     }
     deleteTripHandler(event, id) {
@@ -32,6 +31,7 @@ class TripList extends React.Component {
                 <div className="col-sm"></div>
             </div>
             {trips.map(trip =>
+            (trip.status !== 'Deleted') ?
                 <div className="row listView" key={trip._id}>
                     <div className="col-sm">{trip.source}</div>
                     <div className="col-sm"> {trip.destination}</div>
@@ -41,6 +41,7 @@ class TripList extends React.Component {
                     <button className="col-sm btn btn-primary buttonClass" onClick={(e) => editTrip(trip)}>Edit</button>
                     <button className="col-sm btn btn-primary buttonClass" onClick={(e) => this.deleteTripHandler(e, trip._id)}>Delete</button>
                 </div>
+                : null
                 )}
         </div>
     }

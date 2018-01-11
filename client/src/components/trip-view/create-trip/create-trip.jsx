@@ -9,7 +9,6 @@ import moment from 'moment';
 class CreateTrip extends React.Component {
     constructor(props) {
         super(props);
-        debugger;
         this.state = {
             form: (props.editTripValues !== null) ?
                 {
@@ -19,7 +18,7 @@ class CreateTrip extends React.Component {
                     arrival: props.editTripValues.arrival,
                     transportType: props.editTripValues.transportType,
                     userId: props.editTripValues.userId,
-                    status: "Active",
+                    status: "Inactive",
                     _id: props.editTripValues._id
                 } : {
                     source: "",
@@ -28,7 +27,7 @@ class CreateTrip extends React.Component {
                     arrival: moment(),
                     transportType: "",
                     userId: props.id,
-                    status: "Active"
+                    status: "Inactive"
                 }
         };
         this.updateForm = this.updateForm.bind(this);

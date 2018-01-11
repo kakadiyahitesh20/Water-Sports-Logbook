@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 export function tripsList(trips) {
-    debugger;
     return { type: 'TRIP_LIST', trips}
 }
 
@@ -115,7 +114,6 @@ export function deletedTrip(tripId) {
 }
 
 export function deleteTrip(tripId) {
-    debugger;
     let config = {'api-key': 'RReio98$3#hsdhfDFSe31&sE4e5665DGs'};
     const request = axios({
         method: 'POST',
