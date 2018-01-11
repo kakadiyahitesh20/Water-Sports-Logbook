@@ -38,7 +38,7 @@ export function getTripListById(id) {
     });
     return (dispatch) => {
         request.then((trips) =>{
-            dispatch(tripsList(trips.data[0]));
+            dispatch(tripsList(trips.data));
         })
     }
 }
