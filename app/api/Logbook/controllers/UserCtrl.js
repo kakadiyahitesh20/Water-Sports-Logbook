@@ -25,9 +25,8 @@ module.exports = function (server, options, services) {
             console.log("UserCtrl --> getUsersList");
             // Call the user service to get a specific userlist
             UserService.getUserList()
-                .then(userLists => {
-                reply(userLists);
-        })
+                .then(reply)
+                .catch(errorHandling(reply));
         },
 
         usersLoginCheck: function (request, reply) {
