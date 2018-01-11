@@ -8,46 +8,6 @@ export function tripsList(trips) {
 export function createUser(user) {
      console.log('user inside: ', user);
     let config = {'api-key': 'RReio98$3#hsdhfDFSe31&sE4e5665DGs'};
-    // const requestOptions = {
-    //     method: 'POST',
-    //     headers: config,
-    //     data: {
-    //         "Name": user.name,
-    //         "Email": user.email,
-    //         "dob": user.dob,
-    //         "password": user.password
-    //     }
-    // };
-    // return fetch('http://localhost:8098/createNewUser', requestOptions)
-    //     .then(response => {
-    //         if (!response.ok) {
-    //             return Promise.reject(response.statusText);
-    //         }
-    //         return response.json();
-    //     })
-    //     .then(user => {
-    //
-    //         return user;
-    //     });
-    // let config = {'api-key': 'RReio98$3#hsdhfDFSe31&sE4e5665DGs'};
-    // const request = axios({
-    //     method: 'POST',
-    //     url: 'http://localhost:8098/createNewUser',
-    //
-    //     headers: config,
-    //     data: {
-    //         "Name": user.name,
-    //         "Email": user.email,
-    //         "dob": user.dob,
-    //         "password": user.password
-    //     }
-    //      });
-    // return () => {
-    //     request.then(({response}) =>{
-    //     })
-    // }
-
-    // Send a POST request
     return axios.post('http://localhost:8098/createNewUser', {
                 "Name": user.name,
                 "Email": user.email,
@@ -66,7 +26,6 @@ export function createUser(user) {
         });
 }
 
-
 export function getTripListById(id) {
     let config = {'api-key': 'RReio98$3#hsdhfDFSe31&sE4e5665DGs'};
     const request = axios({
@@ -77,6 +36,20 @@ export function getTripListById(id) {
     return (dispatch) => {
         request.then((trips) =>{
             dispatch(tripsList(trips.data));
+        })
+    }
+}
+export function getTripList() {
+    let config = {'api-key': 'RReio98$3#hsdhfDFSe31&sE4e5665DGs'};
+    const request = axios({
+        method: 'GET',
+        url: 'http://localhost:8098/getTripsList',
+        headers: config,
+    });
+    return (dispatch) => {
+        request.then((trips) =>{
+            console.log('trips.data : ', trips.data);
+            dispatch(tripsList(trips.data.results));
         })
     }
 }
@@ -144,6 +117,7 @@ export function checkUserLogin(user) {
 
             return user;
         });
+
 }
 export function log_out() {
     // remove user from local storage to log user out

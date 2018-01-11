@@ -17,7 +17,13 @@ export function login(username, password) {
                         // store user details in local storage
                         localStorage.setItem('user', JSON.stringify(user));
                         dispatch(success(user));
-                        browserHistory.push('/tripview/'+user[0]._id);
+                        if(user[0].Email == 'admin@admin.com'){
+                            console.log('admin::', user[0].Email);
+                            browserHistory.push('/adminview/' + user[0]._id);
+                        }else {
+                            console.log('not admin:', user[0].Email);
+                            browserHistory.push('/tripview/' + user[0]._id);
+                        }
                     }
                     else{
                         dispatch(failure('User not found'));
